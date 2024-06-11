@@ -1,7 +1,7 @@
 name: fancy_onboarding_screen
 description: Flutter package provides an elegant and highly customizable solution for creating onboarding screens with ease. This package is designed to help developers craft a visually appealing and engaging user onboarding experience, perfect for introducing new users to your app's features and functionality.
 version: 1.0.0
-homepage:
+homepage: "https://github.com/javedmughal-058/fancy_onboarding_screen"
 
 environment:
   sdk: '>=3.0.2 <4.0.0'
@@ -23,5 +23,8 @@ dev_dependencies:
 flutter:
 
   # To add assets to your package, add an assets section, like this:
-   assets:
-     - assets/images/
+  assets:
+    - assets/images/image1.png
+    - assets/images/image2.png
+    - assets/images/image3.png
+    - assets/images/image4.png

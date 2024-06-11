@@ -9,4 +9,3 @@ class OnBoardingItemModel {
   final String subtitle;
   final String image;
 }
-
