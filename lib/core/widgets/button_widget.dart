@@ -11,8 +11,17 @@ class ButtonWidget extends StatelessWidget {
   final bool titleBold = false;
   final Color? bgColor;
   final Color? textColor;
-  const ButtonWidget({super.key, required this.height, this.width, this.radius, this.widget, this.title,
-    required this.onTap, this.borderColor, this.bgColor, this.textColor});
+  const ButtonWidget(
+      {super.key,
+      required this.height,
+      this.width,
+      this.radius,
+      this.widget,
+      this.title,
+      required this.onTap,
+      this.borderColor,
+      this.bgColor,
+      this.textColor});
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +36,15 @@ class ButtonWidget extends StatelessWidget {
           border: Border.all(color: borderColor ?? Colors.transparent),
           color: bgColor ?? Theme.of(context).primaryColor,
         ),
-        child: title == null ? widget : Text(
-          title ?? "",
-          style: Theme.of(context).textTheme.labelLarge!.copyWith(color: textColor, fontWeight: titleBold ? FontWeight.w600 : null),
-          textAlign: TextAlign.center,
-        ),
+        child: title == null
+            ? widget
+            : Text(
+                title ?? "",
+                style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                    color: textColor,
+                    fontWeight: titleBold ? FontWeight.w600 : null),
+                textAlign: TextAlign.center,
+              ),
       ),
     );
   }
