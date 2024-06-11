@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'dashboard_container.dart';
 
 class BoardItem extends StatelessWidget {
-  const BoardItem({super.key,
+  const BoardItem({
+    super.key,
     required this.width,
     required this.height,
     this.onAddPressed,
@@ -87,7 +89,7 @@ class _WalletStrapSide extends StatelessWidget {
 
 class WalletSide extends StatelessWidget {
   final Color? color;
-  const WalletSide({Key? key, this.color}) :super(key: key);
+  const WalletSide({Key? key, this.color}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -98,9 +100,7 @@ class WalletSide extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.shade200,
-            blurRadius: 10,
-          ),
+              color: Colors.grey.shade100, blurRadius: 2, spreadRadius: 2),
         ],
       ),
       padding: const EdgeInsets.all(4),
