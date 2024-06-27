@@ -19,6 +19,7 @@ class FancyOnBoardingScreen extends StatefulWidget {
   final Curve curve;
   final double viewportFraction;
   final List<OnBoardingItemModel>? onBoardingItems;
+  final void Function() onBtnTap;
   const FancyOnBoardingScreen(
       {Key? key,
       this.headingText,
@@ -32,7 +33,8 @@ class FancyOnBoardingScreen extends StatefulWidget {
       this.duration = const Duration(milliseconds: 300),
       this.curve = Curves.easeOut,
       this.viewportFraction = 0.7,
-      this.onBoardingItems})
+      this.onBoardingItems,
+      required this.onBtnTap})
       : super(key: key);
 
   @override
@@ -227,7 +229,7 @@ class _FancyOnBoardingScreenState extends State<FancyOnBoardingScreen>
                           textColor: kWhite,
                           bgColor: widget.boardingScreenColor,
                           height: screenSize.height * 0.05,
-                          onTap: () async {}),
+                          onTap: widget.onBtnTap),
                 ],
               ),
             ),

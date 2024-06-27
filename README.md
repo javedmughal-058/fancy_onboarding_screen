@@ -16,7 +16,7 @@
     <th>Pub Version</th>
     <th>Pub Points</th>
   </tr>
-  <tr><td>Pub v1.0.0</td> <td>140/160</td></tr>
+  <tr><td>Pub v1.0.2</td> <td>150/160</td></tr>
 </table>
 
 

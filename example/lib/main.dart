@@ -1,4 +1,3 @@
-import 'package:fancy_onboarding_screen/core/model/onboarding_item_model.dart';
 import 'package:fancy_onboarding_screen/fancy_onboarding_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -14,12 +13,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter OnBoarding Example',
+      title: 'Flutter OnBoarding Screen Example',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter OnBoarding Example'),
+      home: const MyHomePage(title: 'Flutter OnBoarding Screen Example'),
     );
   }
 }
@@ -33,18 +32,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<OnBoardingItemModel> onBoardingItemList = [];
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        body: FancyOnBoardingScreen(
-          activeIndicatorColor: Colors.teal.shade700,
-          boardingScreenColor: Colors.teal.shade700,
-          onBoardingItems: [],
-        ),
-      ),
-    );
+        child: Scaffold(body: FancyOnBoardingScreen(onBtnTap: () {})));
   }
 }

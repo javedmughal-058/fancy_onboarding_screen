@@ -56,7 +56,6 @@ class _WalletStrapSide extends StatelessWidget {
       width: 85,
       height: 100,
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.onBackground,
         border: Border.all(color: Theme.of(context).dividerColor),
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(5),
