@@ -254,17 +254,21 @@ class _FancyOnBoardingScreenState extends State<FancyOnBoardingScreen>
         child: Text(
           onBoardingItemList[activeIndex].title,
           style: Theme.of(context).textTheme.displaySmall!.copyWith(
-              fontSize: 16, color: kFullBlack, fontWeight: FontWeight.bold),
+                fontSize: 16,
+                color: onBoardingItemList[activeIndex].titleColor ?? kFullBlack,
+                fontWeight: FontWeight.bold,
+              ),
         ),
       ),
       const SizedBox(height: 10),
       Center(
         child: Text(
           onBoardingItemList[activeIndex].subtitle,
-          style: Theme.of(context)
-              .textTheme
-              .displaySmall!
-              .copyWith(fontSize: 16, color: kLightBlack),
+          style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                fontSize: 16,
+                color: onBoardingItemList[activeIndex].subtitleColor ??
+                    kLightBlack,
+              ),
           // style: const TextStyle(fontSize: 16),
         ),
       ),
