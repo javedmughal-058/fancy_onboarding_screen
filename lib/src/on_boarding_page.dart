@@ -22,6 +22,7 @@ class FancyOnBoardingScreen extends StatefulWidget {
   final void Function() onBtnTap;
   final Color? backgroundColor;
   final Gradient? backgroundGradient;
+
   const FancyOnBoardingScreen(
       {Key? key,
       this.headingText,
@@ -253,22 +254,23 @@ class _FancyOnBoardingScreenState extends State<FancyOnBoardingScreen>
       Center(
         child: Text(
           onBoardingItemList[activeIndex].title,
-          style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                fontSize: 16,
-                color: onBoardingItemList[activeIndex].titleColor ?? kFullBlack,
-                fontWeight: FontWeight.bold,
-              ),
+          style: onBoardingItemList[activeIndex].titleTextStyle ??
+              Theme.of(context).textTheme.displaySmall!.copyWith(
+                  fontSize: 16,
+                  color:
+                      onBoardingItemList[activeIndex].titleColor ?? kFullBlack,
+                  fontWeight: FontWeight.bold),
         ),
       ),
       const SizedBox(height: 10),
       Center(
         child: Text(
           onBoardingItemList[activeIndex].subtitle,
-          style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                fontSize: 16,
-                color: onBoardingItemList[activeIndex].subtitleColor ??
-                    kLightBlack,
-              ),
+          style: onBoardingItemList[activeIndex].subtitleTextStyle ??
+              Theme.of(context).textTheme.displaySmall!.copyWith(
+                  fontSize: 16,
+                  color: onBoardingItemList[activeIndex].subtitleColor ??
+                      kLightBlack),
           // style: const TextStyle(fontSize: 16),
         ),
       ),

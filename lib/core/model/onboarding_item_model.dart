@@ -7,6 +7,8 @@ class OnBoardingItemModel {
     required this.image,
     this.titleColor,
     this.subtitleColor,
+    this.titleTextStyle,
+    this.subtitleTextStyle,
   });
 
   final String title;
@@ -14,4 +16,6 @@ class OnBoardingItemModel {
   final String image;
   final Color? titleColor;
   final Color? subtitleColor;
+  final TextStyle? titleTextStyle;
+  final TextStyle? subtitleTextStyle;
 }
