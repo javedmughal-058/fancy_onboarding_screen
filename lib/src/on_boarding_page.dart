@@ -185,7 +185,7 @@ class _FancyOnBoardingScreenState extends State<FancyOnBoardingScreen>
                                     image: NetworkImage(
                                       onBoardingItemList[index].image,
                                     ),
-                                    fit: BoxFit.fitWidth,
+                                    fit: BoxFit.cover,
                                   ),
                                 ),
                               ),
