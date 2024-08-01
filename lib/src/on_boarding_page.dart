@@ -182,7 +182,7 @@ class _FancyOnBoardingScreenState extends State<FancyOnBoardingScreen>
                                     ),
                                   ],
                                   image: DecorationImage(
-                                    image: AssetImage(
+                                    image: NetworkImage(
                                       onBoardingItemList[index].image,
                                     ),
                                     fit: BoxFit.fitWidth,
