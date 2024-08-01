@@ -20,6 +20,8 @@ class FancyOnBoardingScreen extends StatefulWidget {
   final double viewportFraction;
   final List<OnBoardingItemModel>? onBoardingItems;
   final void Function() onBtnTap;
+  final Color? backgroundColor;
+  final Gradient? backgroundGradient;
   const FancyOnBoardingScreen(
       {Key? key,
       this.headingText,
@@ -34,7 +36,9 @@ class FancyOnBoardingScreen extends StatefulWidget {
       this.curve = Curves.easeOut,
       this.viewportFraction = 0.7,
       this.onBoardingItems,
-      required this.onBtnTap})
+      required this.onBtnTap,
+      this.backgroundColor,
+      this.backgroundGradient})
       : super(key: key);
 
   @override
@@ -102,138 +106,143 @@ class _FancyOnBoardingScreenState extends State<FancyOnBoardingScreen>
     final itemWidth = screenSize.width * widget.viewportFraction;
 
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const SizedBox(height: 40),
-            Center(
-              child: Text(
-                widget.headingText ?? 'Heading (App Name)',
-                style: widget.headingTextStyle ??
-                    Theme.of(context).textTheme.displayLarge!.copyWith(
-                        fontSize: 26,
-                        color: widget.boardingScreenColor ??
-                            Theme.of(context).primaryColor),
+      backgroundColor: widget.backgroundColor,
+      body: Container(
+        decoration: BoxDecoration(gradient: widget.backgroundGradient),
+        child: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const SizedBox(height: 40),
+              Center(
+                child: Text(
+                  widget.headingText ?? 'Heading (App Name)',
+                  style: widget.headingTextStyle ??
+                      Theme.of(context).textTheme.displayLarge!.copyWith(
+                          fontSize: 26,
+                          color: widget.boardingScreenColor ??
+                              Theme.of(context).primaryColor),
+                ),
               ),
-            ),
-            Center(
-              child: Text(
-                widget.subHeadingText ?? 'Sub Heading (App Description)',
-                style: widget.subHeadingTextStyle ??
-                    Theme.of(context).textTheme.labelMedium!.copyWith(
-                        fontSize: 12,
-                        color: widget.boardingScreenColor ??
-                            Theme.of(context).primaryColor,
-                        letterSpacing: 2.0),
+              Center(
+                child: Text(
+                  widget.subHeadingText ?? 'Sub Heading (App Description)',
+                  style: widget.subHeadingTextStyle ??
+                      Theme.of(context).textTheme.labelMedium!.copyWith(
+                          fontSize: 12,
+                          color: widget.boardingScreenColor ??
+                              Theme.of(context).primaryColor,
+                          letterSpacing: 2.0),
+                ),
               ),
-            ),
-            const SizedBox(height: 40),
-            Expanded(
-              child: Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  Positioned(
-                    left: -250 + 45,
-                    width: 250,
-                    top: -32,
-                    bottom: -32,
-                    child: WalletSide(color: widget.boardingScreenColor),
-                  ),
-                  Positioned.fill(
-                    child: GestureDetector(
-                      onTapDown: (_) => animationController.forward(),
-                      onTapUp: (_) => animationController.reverse(),
-                      child: PageView.builder(
-                        controller: pageController,
-                        itemCount: onBoardingItemList.length,
-                        onPageChanged: (int index) {
-                          setState(() {
-                            activeIndex = index;
-                          });
-                          animationController.forward().then(
-                                (value) => animationController.reverse(),
-                              );
-                        },
-                        itemBuilder: (context, index) {
-                          return AnimatedScale(
-                            duration: const Duration(milliseconds: 300),
-                            scale: index == activeIndex ? 1 : 0.8,
-                            curve: Curves.easeOut,
-                            child: Container(
-                              margin: EdgeInsets.all(kPadding / 2),
-                              decoration: BoxDecoration(
-                                color: kWhite,
-                                borderRadius: BorderRadius.circular(25),
-                                border: Border.all(
-                                    width: 0, color: Colors.transparent),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: kLightGreyColor.withOpacity(0.75),
-                                    offset: const Offset(3, 4),
+              const SizedBox(height: 40),
+              Expanded(
+                child: Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    Positioned(
+                      left: -250 + 45,
+                      width: 250,
+                      top: -32,
+                      bottom: -32,
+                      child: WalletSide(color: widget.boardingScreenColor),
+                    ),
+                    Positioned.fill(
+                      child: GestureDetector(
+                        onTapDown: (_) => animationController.forward(),
+                        onTapUp: (_) => animationController.reverse(),
+                        child: PageView.builder(
+                          controller: pageController,
+                          itemCount: onBoardingItemList.length,
+                          onPageChanged: (int index) {
+                            setState(() {
+                              activeIndex = index;
+                            });
+                            animationController.forward().then(
+                                  (value) => animationController.reverse(),
+                                );
+                          },
+                          itemBuilder: (context, index) {
+                            return AnimatedScale(
+                              duration: const Duration(milliseconds: 300),
+                              scale: index == activeIndex ? 1 : 0.8,
+                              curve: Curves.easeOut,
+                              child: Container(
+                                margin: EdgeInsets.all(kPadding / 2),
+                                decoration: BoxDecoration(
+                                  color: kWhite,
+                                  borderRadius: BorderRadius.circular(25),
+                                  border: Border.all(
+                                      width: 0, color: Colors.transparent),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: kLightGreyColor.withOpacity(0.75),
+                                      offset: const Offset(3, 4),
+                                    ),
+                                  ],
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                      onBoardingItemList[index].image,
+                                    ),
+                                    fit: BoxFit.fitWidth,
                                   ),
-                                ],
-                                image: DecorationImage(
-                                  image: AssetImage(
-                                    onBoardingItemList[index].image,
-                                  ),
-                                  fit: BoxFit.fitWidth,
                                 ),
                               ),
-                            ),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      left: -250 + 35,
+                      width: 250,
+                      top: -30,
+                      bottom: -30,
+                      child: AnimatedBuilder(
+                        animation: animationController,
+                        builder: (context, child) {
+                          return Transform(
+                            transform: Matrix4.identity()
+                              ..setEntry(3, 2, 0.001)
+                              ..rotateY(rotationAnimation.value),
+                            alignment: Alignment.center,
+                            child:
+                                WalletSide(color: widget.boardingScreenColor),
                           );
                         },
                       ),
                     ),
-                  ),
-                  Positioned(
-                    left: -250 + 35,
-                    width: 250,
-                    top: -30,
-                    bottom: -30,
-                    child: AnimatedBuilder(
-                      animation: animationController,
-                      builder: (context, child) {
-                        return Transform(
-                          transform: Matrix4.identity()
-                            ..setEntry(3, 2, 0.001)
-                            ..rotateY(rotationAnimation.value),
-                          alignment: Alignment.center,
-                          child: WalletSide(color: widget.boardingScreenColor),
-                        );
-                      },
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  left: (screenSize.width - itemWidth) / 2,
+                  right: (screenSize.width - itemWidth) / 2,
+                  top: 40,
+                  bottom: 50,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    ..._buildItemInfo(activeIndex: activeIndex),
+                    PageIndicator(
+                      length: onBoardingItemList.length,
+                      activeIndex: activeIndex,
+                      activeColor: widget.activeIndicatorColor,
                     ),
-                  ),
-                ],
+                    widget.boardingPageButton ??
+                        ButtonWidget(
+                            title: widget.buttonText ?? 'Get Started!',
+                            textColor: kWhite,
+                            bgColor: widget.boardingScreenColor,
+                            height: screenSize.height * 0.05,
+                            onTap: widget.onBtnTap),
+                  ],
+                ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                left: (screenSize.width - itemWidth) / 2,
-                right: (screenSize.width - itemWidth) / 2,
-                top: 40,
-                bottom: 50,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  ..._buildItemInfo(activeIndex: activeIndex),
-                  PageIndicator(
-                    length: onBoardingItemList.length,
-                    activeIndex: activeIndex,
-                    activeColor: widget.activeIndicatorColor,
-                  ),
-                  widget.boardingPageButton ??
-                      ButtonWidget(
-                          title: widget.buttonText ?? 'Get Started!',
-                          textColor: kWhite,
-                          bgColor: widget.boardingScreenColor,
-                          height: screenSize.height * 0.05,
-                          onTap: widget.onBtnTap),
-                ],
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
